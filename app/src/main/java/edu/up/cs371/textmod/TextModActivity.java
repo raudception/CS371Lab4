@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Button;
+import android.widget.EditText;
 import java.util.ArrayList;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,11 +36,27 @@ public class TextModActivity extends ActionBarActivity {
     private EditText editText;
 
 
+    private Button clear;
+    private EditText clearT ;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        clear = (Button)findViewById(R.id.ClearButton);
+        clearT = (EditText)findViewById(R.id.editText);
+
+        if(clear == null)
+            Log.i("eror","null clear button ref");
+        else
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearT.setText("");
+            }
+        });
 
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
