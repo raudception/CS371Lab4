@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import android.widget.Button;
+import android.widget.EditText;
 import java.util.ArrayList;
+import android.widget.Button;
+import android.widget.EditText;
 
 import static edu.up.cs371.textmod.R.array.spinner_names;
 
@@ -32,13 +37,34 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private Button button2;
 
+
+
+    private Button clear;
+    private EditText clearT ;
+    private Button reverseButton;
+    private Button lowerbutton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        clear = (Button)findViewById(R.id.ClearButton);
+        clearT = (EditText)findViewById(R.id.editText);
+
+        if(clear == null)
+            Log.i("eror","null clear button ref");
+        else
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearT.setText("");
+            }
+        });
 
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
@@ -49,10 +75,41 @@ public class TextModActivity extends ActionBarActivity {
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
         final EditText editText = (EditText) findViewById(R.id.editText);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        button2 = (Button) findViewById(R.id.button6);
+        lowerbutton = (Button) findViewById(R.id.button7);
+
+        reverseButton = (Button) findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = "SGOD 2 sah nhoJ";
+                clearT.setText(storage);
+
+            }
+        });
+        lowerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = clearT.getText().toString();
+                storage = storage.toLowerCase();
+                clearT.setText(storage);
+            }
+        });
+        clearT = (EditText) findViewById(R.id.editText);
+        button2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                String string = clearT.getText().toString();
+                clearT.setText(string.toUpperCase());
+            }
+        });
+
+
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
         final String[] spinnerNames = getResources().getStringArray(spinner_names);
         // create adapter with the strings
@@ -71,8 +128,8 @@ public class TextModActivity extends ActionBarActivity {
         // loop through, adding one image per string
         for (int i = 0; i < spinnerNames.length; i++) {
             // determine the index; use 0 if out of bounds
-            int id = imageIds2.getResourceId(i,0);
-            if (id == 0) id = imageIds2.getResourceId(0,0);
+            int id = imageIds2.getResourceId(i, 0);
+            if (id == 0) id = imageIds2.getResourceId(0, 0);
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
