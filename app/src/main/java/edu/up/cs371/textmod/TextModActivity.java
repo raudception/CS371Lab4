@@ -41,6 +41,7 @@ public class TextModActivity extends ActionBarActivity {
     private EditText clearT ;
     private Button reverseButton;
     private Button lowerbutton;
+    private Button kollinButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -51,7 +52,15 @@ public class TextModActivity extends ActionBarActivity {
 
         clear = (Button)findViewById(R.id.ClearButton);
         clearT = (EditText)findViewById(R.id.editText);
+        kollinButton = (Button) findViewById(R.id.kollinButton);
 
+        kollinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearT.setText("Why would you leave me?");
+            }
+        });
+        
         if(clear == null)
             Log.i("eror","null clear button ref");
         else
@@ -129,6 +138,7 @@ public class TextModActivity extends ActionBarActivity {
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
         }
+
 
 
 
