@@ -33,11 +33,13 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
     private Button button2;
-    private EditText editText;
+
 
 
     private Button clear;
     private EditText clearT ;
+    private Button reverseButton;
+    private Button lowerbutton;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -65,11 +67,30 @@ public class TextModActivity extends ActionBarActivity {
         // set instance variables for our widgets
         imageView = (ImageView) findViewById(R.id.imageView);
         button2 = (Button) findViewById(R.id.button6);
-        editText = (EditText) findViewById(R.id.editText);
+        lowerbutton = (Button) findViewById(R.id.button7);
+
+        reverseButton = (Button) findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = "SGOD 2 sah nhoJ";
+                clearT.setText(storage);
+
+            }
+        });
+        lowerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = clearT.getText().toString();
+                storage = storage.toLowerCase();
+                clearT.setText(storage);
+            }
+        });
+        clearT = (EditText) findViewById(R.id.editText);
         button2.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                String string = editText.getText().toString();
-                editText.setText(string.toUpperCase());
+                String string = clearT.getText().toString();
+                clearT.setText(string.toUpperCase());
             }
         });
 
