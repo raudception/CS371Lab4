@@ -10,6 +10,7 @@
         <item>@mipmap/nuxoll</item>
         <item>@mipmap/vegdahl</item>
         <item>@mipmap/sean</item>
+        <item>@mipmap/ic_launcher69</item>
     </array>
 
     <string-array name="spinner_names">
@@ -18,6 +19,7 @@
         <item>Dr. Steven Vegdahl</item>
         <item>Sean Gillespie</item>
 
+        <item>Taylor</item>
     </string-array>
 
 </resources>
