@@ -20,13 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import android.widget.Button;
-import android.widget.EditText;
 import java.util.ArrayList;
-import android.widget.Button;
-import android.widget.EditText;
+
 
 import static edu.up.cs371.textmod.R.array.spinner_names;
 
@@ -109,7 +105,6 @@ public class TextModActivity extends ActionBarActivity {
         //
         // get spinner object
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
         final String[] spinnerNames = getResources().getStringArray(spinner_names);
         // create adapter with the strings
