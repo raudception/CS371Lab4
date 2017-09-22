@@ -41,6 +41,7 @@ public class TextModActivity extends ActionBarActivity {
     private EditText clearT ;
     private Button reverseButton;
     private Button lowerbutton;
+    private Button theButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -74,6 +75,7 @@ public class TextModActivity extends ActionBarActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
         button2 = (Button) findViewById(R.id.button6);
         lowerbutton = (Button) findViewById(R.id.button7);
+        theButton = (Button)findViewById(R.id.button14);
 
         reverseButton = (Button) findViewById(R.id.button4);
         reverseButton.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,16 @@ public class TextModActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String string = clearT.getText().toString();
                 clearT.setText(string.toUpperCase());
+            }
+        });
+
+        theButton = (Button) findViewById(R.id.button14);
+        theButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = "REEEEEEEEEE";
+                clearT.setText(storage);
+
             }
         });
 

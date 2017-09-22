@@ -130,6 +130,15 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="1"  />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REEEEEEE"
+            android:id="@+id/button14"
+            android:textSize="@dimen/button_font_size"
+            android:textColor="@color/button_text_color"
+            android:background="@color/button_color" />
     </LinearLayout>
 
     <Space
