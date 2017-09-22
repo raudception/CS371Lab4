@@ -16,9 +16,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
+
+import static edu.up.cs371.textmod.R.array.spinner_names;
 
 public class TextModActivity extends ActionBarActivity {
 
@@ -27,6 +32,7 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -38,15 +44,17 @@ public class TextModActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
 
+
+
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
-
+        final EditText editText = (EditText) findViewById(R.id.editText);
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner);
         // get array of strings
-        String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+        final String[] spinnerNames = getResources().getStringArray(spinner_names);
         // create adapter with the strings
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
@@ -70,8 +78,17 @@ public class TextModActivity extends ActionBarActivity {
             images.add(img);
         }
 
+
+
         // define a listener for the spinner
-        spinner.setOnItemSelectedListener(new MySpinnerListener());
+        spinner.setOnItemSelectedListener(new MySpinnerListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                editText.setText(spinner.getSelectedItem().toString());
+                imageView.setImageBitmap(images.get(position));
+            }
+        });
+
+
 
     }
 
