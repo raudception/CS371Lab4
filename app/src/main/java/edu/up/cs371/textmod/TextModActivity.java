@@ -109,7 +109,7 @@ public class TextModActivity extends ActionBarActivity {
         //
         // get spinner object
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
         // get array of strings
         final String[] spinnerNames = getResources().getStringArray(spinner_names);
         // create adapter with the strings
