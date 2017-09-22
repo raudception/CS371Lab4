@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class TextModActivity extends ActionBarActivity {
 
@@ -27,6 +29,9 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private Button button2;
+    private EditText editText;
+
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -39,12 +44,21 @@ public class TextModActivity extends ActionBarActivity {
         setContentView(R.layout.activity_text_mod);
 
         // set instance variables for our widgets
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        button2 = (Button) findViewById(R.id.button6);
+        editText = (EditText) findViewById(R.id.editText);
+        button2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                String string = editText.getText().toString();
+                editText.setText(string.toUpperCase());
+            }
+        });
+
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -63,8 +77,8 @@ public class TextModActivity extends ActionBarActivity {
         // loop through, adding one image per string
         for (int i = 0; i < spinnerNames.length; i++) {
             // determine the index; use 0 if out of bounds
-            int id = imageIds2.getResourceId(i,0);
-            if (id == 0) id = imageIds2.getResourceId(0,0);
+            int id = imageIds2.getResourceId(i, 0);
+            if (id == 0) id = imageIds2.getResourceId(0, 0);
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
