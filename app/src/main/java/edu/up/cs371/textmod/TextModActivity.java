@@ -17,11 +17,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import android.widget.Button;
 import android.widget.EditText;
 import java.util.ArrayList;
+import android.widget.Button;
+import android.widget.EditText;
+
+import static edu.up.cs371.textmod.R.array.spinner_names;
 
 public class TextModActivity extends ActionBarActivity {
 
@@ -30,9 +37,15 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private Button button2;
+
+
 
     private Button clear;
     private EditText clearT ;
+    private Button reverseButton;
+    private Button lowerbutton;
+
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -57,15 +70,48 @@ public class TextModActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
 
+
+
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        button2 = (Button) findViewById(R.id.button6);
+        lowerbutton = (Button) findViewById(R.id.button7);
+
+        reverseButton = (Button) findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = "SGOD 2 sah nhoJ";
+                clearT.setText(storage);
+
+            }
+        });
+        lowerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String storage = clearT.getText().toString();
+                storage = storage.toLowerCase();
+                clearT.setText(storage);
+            }
+        });
+        clearT = (EditText) findViewById(R.id.editText);
+        button2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                String string = clearT.getText().toString();
+                clearT.setText(string.toUpperCase());
+            }
+        });
+
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
-        String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+        final String[] spinnerNames = getResources().getStringArray(spinner_names);
         // create adapter with the strings
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
@@ -82,15 +128,24 @@ public class TextModActivity extends ActionBarActivity {
         // loop through, adding one image per string
         for (int i = 0; i < spinnerNames.length; i++) {
             // determine the index; use 0 if out of bounds
-            int id = imageIds2.getResourceId(i,0);
-            if (id == 0) id = imageIds2.getResourceId(0,0);
+            int id = imageIds2.getResourceId(i, 0);
+            if (id == 0) id = imageIds2.getResourceId(0, 0);
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
         }
 
+
+
         // define a listener for the spinner
-        spinner.setOnItemSelectedListener(new MySpinnerListener());
+        spinner.setOnItemSelectedListener(new MySpinnerListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                editText.setText(spinner.getSelectedItem().toString());
+                imageView.setImageBitmap(images.get(position));
+            }
+        });
+
+
 
     }
 
