@@ -56,7 +56,7 @@ public class TextModActivity extends ActionBarActivity {
 
 
         // Set up the spinner so that it shows the names in the spinner array resources
-        //dyjuhuhg
+        //dyjuhuhghgf
         // get spinner object
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
